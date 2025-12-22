@@ -3,13 +3,13 @@ class Solution {
         Map<Character, Integer> map = new HashMap<>();
         if (s.length() != t.length())
             return false;
+        int[] freq = new int[26];
         for(char c : s.toCharArray()){
-            map.put(c,map.getOrDefault(c,0)+1);
+            freq[c - 'a']++;
         }
         for(char c : t.toCharArray()){
-            if(!map.containsKey(c)) return false;
-            map.put(c, map.get(c) -1);
-            if(map.get(c) < 0) return false;
+            freq[c - 'a']--;
+            if(freq[c-'a'] < 0) return false;
         }
         return true;
     }
